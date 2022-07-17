@@ -34,15 +34,32 @@ public class SettingsMenuScreen extends Screen {
             }
             return Text.literal("AutoFish: OFF");
         }
+
+        if (Objects.equals(type, "xray"))
+        {
+            if (Hackmore.getInstance().XrayEnabled)
+            {
+                return Text.literal("X-Ray: ON");
+            }
+            return Text.literal("X-Ray: OFF");
+        }
+
         return Text.literal("Null");
     }
 
     protected void init() {
         // Autofish
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 90, 200, 20,
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 60, 200, 20,
                 text("autofish"), (button -> {
             Hackmore.getInstance().AutoFishEnabled = !Hackmore.getInstance().AutoFishEnabled;
             button.setMessage(text("autofish"));
+        })));
+
+        // Xray
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 90, 200, 20,
+                text("xray"), (button -> {
+            Hackmore.getInstance().XrayEnabled = !Hackmore.getInstance().XrayEnabled;
+            button.setMessage(text("xray"));
         })));
     }
 }
