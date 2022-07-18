@@ -68,10 +68,7 @@ public class Xray {
 
     public static void setFullBrightState(boolean state)
     {
-        if (state)
-            FullbrightState = 1;
-        else
-            FullbrightState = 0;
+        FullbrightState = state ? 1 : 0;
     }
 
     public static void toggleXray()

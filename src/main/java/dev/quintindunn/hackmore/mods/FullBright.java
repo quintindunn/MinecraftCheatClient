@@ -26,19 +26,9 @@ public class FullBright {
     public static void setFullBrightState(boolean state)
     {
         MinecraftClient client = MinecraftClient.getInstance();
-        if (state)
-        {
-            FullbrightState = 1;
+        FullbrightState = state ? 1 : 0;
             client.worldRenderer.reload();
-        }
-        else
-        {
-            FullbrightState = 0;
-            client.worldRenderer.reload();
-        }
-
     }
-
     public static void toggleFullBright()
     {
         Hackmore.getInstance().FullBrightEnabled = !Hackmore.getInstance().FullBrightEnabled;

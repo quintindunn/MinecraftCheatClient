@@ -1,0 +1,1 @@
+start cmd /k "gradlew.bat build & timeout -1"
