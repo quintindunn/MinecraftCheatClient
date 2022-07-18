@@ -15,15 +15,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class FishingBobberEntityMixin {
 	@Shadow private  boolean caughtFish;
 
-	@Inject(at = @At("TAIL"), method = "onTrackedDataSet()V")
+	@Inject(at = @At("TAIL"), method = "onTrackedDataSet")
 	public void onTrackedDataSet(TrackedData<?> data, CallbackInfo info) {
 		MinecraftClient client = MinecraftClient.getInstance();
 
 		if (caughtFish && Hackmore.getInstance().AutoFishEnabled) {
-			Hackmore.LOGGER.info("Fish on!");
 			assert client.interactionManager != null;
 			client.interactionManager.interactItem(client.player, Hand.MAIN_HAND);
-			Hackmore.getInstance().setRecast(5);
+			Hackmore.getInstance().setRecast(20);
 		}
 
 
