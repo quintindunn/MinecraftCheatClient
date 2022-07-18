@@ -20,6 +20,7 @@ public class Xray implements ClientModInitializer {
 
     public Xray() {
         xrayBlocks.add("Block{minecraft:coal_ore}");
+        xrayBlocks.add("Block{minecraft:copper_ore}");
         xrayBlocks.add("Block{minecraft:iron_ore}");
         xrayBlocks.add("Block{minecraft:gold_ore}");
         xrayBlocks.add("Block{minecraft:diamond_ore}");
@@ -86,6 +87,8 @@ public class Xray implements ClientModInitializer {
         setFullbrightState(Hackmore.getInstance().XrayEnabled);
         client.worldRenderer.reload();
     }
+
+
 
     @Override
     public void onInitializeClient() {

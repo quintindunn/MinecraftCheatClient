@@ -10,6 +10,8 @@ import net.minecraft.client.MinecraftClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashSet;
+
 public class Hackmore implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("hackmore");
 	private static Hackmore instance;
@@ -21,6 +23,7 @@ public class Hackmore implements ModInitializer {
 	public boolean AutoFishEnabled = false;
 	public boolean SpeedEnabled = false;
 	public boolean XrayEnabled = false;
+	public boolean FullBrightEnabled = false;
 
 
 	@Override
@@ -50,18 +53,19 @@ public class Hackmore implements ModInitializer {
 	}
 
 	public int getEnabledCheatsCount(){
-		int count = 0;
-		if (AutoFishEnabled) count++;
-		if (XrayEnabled) count++;
-		return count;
+		return getEnabledCheats().size();
 	}
-	public String[] getEnabledCheats(){
-		String[] cheats = new String[getEnabledCheatsCount()];
+	public HashSet<String> getEnabledCheats(){
+		HashSet<String> cheatsEnabled = new HashSet<String>();
 		int x = 0;
-		if (AutoFishEnabled) {cheats[x] = "AutoFish";x++;}
-		if (XrayEnabled) {cheats[x] = "X-Ray";x++;}
+		if (AutoFishEnabled)
+			cheatsEnabled.add("AutoFish");
+		if (XrayEnabled)
+			cheatsEnabled.add("X-Ray");
+		if (FullBrightEnabled)
+			cheatsEnabled.add("FullBright");
 
-		return cheats;
+		return cheatsEnabled;
 	}
 
 }

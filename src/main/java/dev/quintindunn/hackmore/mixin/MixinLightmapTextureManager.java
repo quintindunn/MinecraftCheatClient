@@ -1,5 +1,6 @@
 package dev.quintindunn.hackmore.mixin;
 
+import dev.quintindunn.hackmore.mods.FullBright;
 import dev.quintindunn.hackmore.mods.Xray;
 import net.minecraft.client.option.SimpleOption;
 import org.objectweb.asm.Opcodes;
@@ -15,9 +16,16 @@ public class MixinLightmapTextureManager {
 
     @Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/GameOptions;getGamma()Lnet/minecraft/client/option/SimpleOption;", opcode = Opcodes.INVOKEVIRTUAL), method = "update(F)V")
     private SimpleOption<Double> getFieldValue(GameOptions options) {
-        if (Xray.isFullBrightEnabled()) {
+        if (Xray.isFullBrightEnabled())
+        {
             return Xray.getGammaBypass();
-        } else {
+        }
+        else if (FullBright.isFullBrightEnabled())
+        {
+            return FullBright.getGammaBypass();
+        }
+        else
+        {
             return options.getGamma();
         }
     }

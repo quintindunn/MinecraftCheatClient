@@ -1,5 +1,6 @@
 package dev.quintindunn.hackmore;
 
+import dev.quintindunn.hackmore.mods.FullBright;
 import dev.quintindunn.hackmore.mods.Speed;
 import dev.quintindunn.hackmore.mods.Xray;
 import net.minecraft.client.gui.screen.Screen;
@@ -34,6 +35,15 @@ public class SettingsMenuScreen extends Screen {
             return Text.literal("AutoFish: OFF");
         }
 
+        if (Objects.equals(type, "fullbright"))
+        {
+            if (Hackmore.getInstance().FullBrightEnabled)
+            {
+                return Text.literal("FullBright: ON");
+            }
+            return Text.literal("FullBright: OFF");
+        }
+
         if (Objects.equals(type, "xray"))
         {
             if (Hackmore.getInstance().XrayEnabled)
@@ -57,22 +67,29 @@ public class SettingsMenuScreen extends Screen {
 
 
     protected void init() {
-        // Autofish
+        // AutoFish
         this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 60, 200, 20,
                 text("autofish"), (button -> {
             Hackmore.getInstance().AutoFishEnabled = !Hackmore.getInstance().AutoFishEnabled;
             button.setMessage(text("autofish"));
         })));
 
-        // Xray
+        // FullBright
         this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 90, 200, 20,
+                text("fullbright"), (button -> {
+            FullBright.toggleFullBright();
+            button.setMessage(text("fullbright"));
+        })));
+
+        // Xray
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 120, 200, 20,
                 text("xray"), (button -> {
             Xray.toggleXray();
             button.setMessage(text("xray"));
         })));
 
         // Speed
-        SliderWidget button = new SliderWidget(this.width / 2 - 100, this.height / 6 + 120, 200, 20,
+        SliderWidget button = new SliderWidget(this.width / 2 - 100, this.height / 6 + 150, 200, 20,
                 text("speed"), Speed.getSpeed())
         {
             @Override
