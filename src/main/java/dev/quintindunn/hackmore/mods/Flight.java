@@ -34,7 +34,7 @@ public class Flight {
 
         if (mode == 0 && player != null)
         {
-            Vec3d playerVelocity = player.getRotationVector();
+            Vec3d playerVelocity = player.getVelocity();
             double yVelocity = 0;
 
             if (jumpKey.isPressed())
