@@ -18,6 +18,7 @@ public class Hackmore implements ModInitializer {
 	private AutoFish fisher;
 	private Speed speed;
 	private static Flight flight;
+	private static Xray xray;
 	private static NoFall nofall;
 
 	// Cheat (enabled) booleans
@@ -35,6 +36,7 @@ public class Hackmore implements ModInitializer {
 		fisher = new AutoFish();
 		flight = new Flight();
 		speed = new Speed();
+		xray = new Xray();
 		nofall = new NoFall();
 		ClientTickEvents.END_CLIENT_TICK.register(this::tick);
 
