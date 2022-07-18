@@ -3,7 +3,6 @@ package dev.quintindunn.hackmore.mixin;
 import dev.quintindunn.hackmore.Hackmore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -14,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
 @Mixin(value = Block.class)
-public class XrayMixin {
+public class ShouldRenderSideMixin {
     @Inject(at = @At("RETURN"), method = "shouldDrawSide(" + "Lnet/minecraft/block/BlockState;" + // state
             "Lnet/minecraft/world/BlockView;" + // reader
             "Lnet/minecraft/util/math/BlockPos;" + // pos
@@ -32,6 +31,6 @@ public class XrayMixin {
 
     }
 
-    private XrayMixin() {
+    private ShouldRenderSideMixin() {
     }
 }

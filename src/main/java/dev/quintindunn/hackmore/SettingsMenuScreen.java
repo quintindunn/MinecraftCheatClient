@@ -38,10 +38,8 @@ public class SettingsMenuScreen extends Screen {
         {
             if (Hackmore.getInstance().XrayEnabled)
             {
-                Xray.setFullbrightState(true);
                 return Text.literal("X-Ray: ON");
             }
-            Xray.setFullbrightState(false);
             return Text.literal("X-Ray: OFF");
         }
 
@@ -60,10 +58,8 @@ public class SettingsMenuScreen extends Screen {
         // Xray
         this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 90, 200, 20,
                 text("xray"), (button -> {
-            Hackmore.getInstance().XrayEnabled = !Hackmore.getInstance().XrayEnabled;
+            Xray.toggleXray();
             button.setMessage(text("xray"));
-            assert client != null;
-            client.worldRenderer.reload();
         })));
     }
 }

@@ -78,7 +78,7 @@ public class Xray implements ClientModInitializer {
             FullbrightState = 0;
     }
 
-    private void toggleXray()
+    public static void toggleXray()
     {
         MinecraftClient client = MinecraftClient.getInstance();
         Hackmore.getInstance().XrayEnabled = !Hackmore.getInstance().XrayEnabled;

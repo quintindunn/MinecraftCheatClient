@@ -7,7 +7,7 @@
   ],
   "client": [
     "FishingBobberEntityMixin",
-    "XrayMixin",
+    "ShouldRenderSideMixin",
     "MixinLightmapTextureManager",
     "SettingsMixin"
   ],
