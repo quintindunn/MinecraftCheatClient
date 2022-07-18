@@ -7,7 +7,7 @@ import net.minecraft.text.Text;
 
 public class FullBright {
 
-    private static int FullbrightState = 1;
+    private static int FullbrightState = 0;
     private static final SimpleOption<Double> gammaBypass = new SimpleOption<>("options.gamma", SimpleOption.emptyTooltip(), (optionText, value) -> Text.empty(), SimpleOption.DoubleSliderCallbacks.INSTANCE.withModifier(
             d -> (double) 20d, d -> 1
     ), 0.5, value -> {});

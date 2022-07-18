@@ -1,22 +1,16 @@
 package dev.quintindunn.hackmore.mods;
 
 import dev.quintindunn.hackmore.Hackmore;
-import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.option.SimpleOption;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+
 import java.util.HashSet;
 
-public class Xray implements ClientModInitializer {
-    private static final KeyBinding hotkey = KeyBindingHelper.registerKeyBinding(new KeyBinding("Toggle X-Ray", InputUtil.Type.KEYSYM, 88, "key.categories.misc"));
-
+public class Xray {
     private static final HashSet<String> xrayBlocks = new HashSet<>();
-    private static int FullbrightState = 1;
+    private static int FullbrightState = 0;
 
     public Xray() {
         xrayBlocks.add("Block{minecraft:coal_ore}");
@@ -72,7 +66,7 @@ public class Xray implements ClientModInitializer {
         return xrayBlocks.contains(state.getBlock().toString());
     }
 
-    public static void setFullbrightState(boolean state)
+    public static void setFullBrightState(boolean state)
     {
         if (state)
             FullbrightState = 1;
@@ -84,20 +78,11 @@ public class Xray implements ClientModInitializer {
     {
         MinecraftClient client = MinecraftClient.getInstance();
         Hackmore.getInstance().XrayEnabled = !Hackmore.getInstance().XrayEnabled;
-        setFullbrightState(Hackmore.getInstance().XrayEnabled);
+        setFullBrightState(Hackmore.getInstance().XrayEnabled);
         client.worldRenderer.reload();
     }
 
     public static boolean shouldDrawSide(BlockState state) {
         return showBlock(state);
-    }
-
-    @Override
-    public void onInitializeClient() {
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (hotkey.wasPressed()) {
-                toggleXray();
-            }
-        });
     }
 }
