@@ -17,7 +17,6 @@ public class MixinLightmapTextureManager {
     @Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/GameOptions;getGamma()Lnet/minecraft/client/option/SimpleOption;", opcode = Opcodes.INVOKEVIRTUAL), method = "update(F)V")
     private SimpleOption<Double> getFieldValue(GameOptions options) {
         if (Xray.isFullBrightEnabled()) {
-            Hackmore.LOGGER.info("Xray Bypass");
             return Xray.getGammaBypass();
         } else {
             return options.getGamma();
