@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "dev.quintindunn.hackmore.Hackmore"
+    ],
+    "client": [
+      "dev.quintindunn.hackmore.Xray"
     ]
   },
   "mixins": [

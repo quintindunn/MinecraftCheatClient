@@ -23,7 +23,7 @@ public abstract class FishingBobberEntityMixin {
 			Hackmore.LOGGER.info("Fish on!");
 			assert client.interactionManager != null;
 			client.interactionManager.interactItem(client.player, Hand.MAIN_HAND);
-			Hackmore.getInstance().setRecast(20);
+			Hackmore.getInstance().setRecast(5);
 		}
 
 
