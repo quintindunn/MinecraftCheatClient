@@ -1,9 +1,6 @@
 package dev.quintindunn.hackmore;
 
-import dev.quintindunn.hackmore.mods.AutoFish;
-import dev.quintindunn.hackmore.mods.NoFall;
-import dev.quintindunn.hackmore.mods.Speed;
-import dev.quintindunn.hackmore.mods.Xray;
+import dev.quintindunn.hackmore.mods.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.block.BlockState;
@@ -16,9 +13,11 @@ import java.util.HashSet;
 public class Hackmore implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("hackmore");
 	private static Hackmore instance;
+
+	// Cheats
 	private AutoFish fisher;
 	private Speed speed;
-	private static Xray xray;
+	private static Flight flight;
 	private static NoFall nofall;
 
 	// Cheat (enabled) booleans
@@ -26,6 +25,7 @@ public class Hackmore implements ModInitializer {
 	public boolean SpeedEnabled = false;
 	public boolean XrayEnabled = false;
 	public boolean FullBrightEnabled = false;
+	public boolean FlightEnabled = false;
 	public boolean NoFallEnabled = false;
 
 
@@ -33,7 +33,7 @@ public class Hackmore implements ModInitializer {
 	public void onInitialize() {
 		if (instance==null) instance = this;
 		fisher = new AutoFish();
-		xray = new Xray();
+		flight = new Flight();
 		speed = new Speed();
 		nofall = new NoFall();
 		ClientTickEvents.END_CLIENT_TICK.register(this::tick);
@@ -50,6 +50,7 @@ public class Hackmore implements ModInitializer {
 		fisher.tick(client);
 		nofall.tick(client);
 		speed.tick(client);
+		flight.tick(client);
 	}
 
 	public int getEnabledCheatsCount(){

@@ -29,6 +29,9 @@ public class SettingsMenuScreen extends Screen {
         if (Objects.equals(type, "fullbright"))
             return Text.literal("Full-Bright: " + (Hackmore.getInstance().FullBrightEnabled ? "ON" : "OFF"));
 
+        if (Objects.equals(type, "flight"))
+            return Text.literal("Flight: " + Flight.getMode());
+
         if (Objects.equals(type, "xray"))
             return Text.literal("X-Ray: " + (Hackmore.getInstance().XrayEnabled ? "ON" : "OFF"));
 
@@ -44,31 +47,38 @@ public class SettingsMenuScreen extends Screen {
 
     protected void init() {
         // AutoFish
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 60, 200, 20,
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 30, 200, 20,
                 text("autofish"), (button -> {
             AutoFish.toggleAutoFish();
             button.setMessage(text("autofish"));
         })));
 
         // FullBright
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 90, 200, 20,
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 60, 200, 20,
                 text("fullbright"), (button -> {
             FullBright.toggleFullBright();
             button.setMessage(text("fullbright"));
         })));
 
         // Xray
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 120, 200, 20,
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 90, 200, 20,
                 text("xray"), (button -> {
             Xray.toggleXray();
             button.setMessage(text("xray"));
         })));
 
         // NoFall
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 150, 200, 20,
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 120, 200, 20,
                 text("nofall"), (button -> {
             NoFall.toggleNoFall();
             button.setMessage(text("nofall"));
+        })));
+
+        // Flight
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 150, 200, 20,
+                text("flight"), (button -> {
+            Flight.cycleFlight();
+            button.setMessage(text("flight"));
         })));
 
         // Speed
