@@ -1,6 +1,7 @@
 package dev.quintindunn.hackmore;
 
 import dev.quintindunn.hackmore.mods.AutoFish;
+import dev.quintindunn.hackmore.mods.NoFall;
 import dev.quintindunn.hackmore.mods.Speed;
 import dev.quintindunn.hackmore.mods.Xray;
 import net.fabricmc.api.ModInitializer;
@@ -18,12 +19,14 @@ public class Hackmore implements ModInitializer {
 	private AutoFish fisher;
 	private Speed speed;
 	private static Xray xray;
+	private static NoFall nofall;
 
 	// Cheat (enabled) booleans
 	public boolean AutoFishEnabled = false;
 	public boolean SpeedEnabled = false;
 	public boolean XrayEnabled = false;
 	public boolean FullBrightEnabled = false;
+	public boolean NoFallEnabled = false;
 
 
 	@Override
@@ -32,6 +35,7 @@ public class Hackmore implements ModInitializer {
 		fisher = new AutoFish();
 		xray = new Xray();
 		speed = new Speed();
+		nofall = new NoFall();
 		ClientTickEvents.END_CLIENT_TICK.register(this::tick);
 
 	}
@@ -44,6 +48,7 @@ public class Hackmore implements ModInitializer {
 
 	public void tick(MinecraftClient client) {
 		fisher.tick(client);
+		nofall.tick(client);
 		speed.tick(client);
 	}
 

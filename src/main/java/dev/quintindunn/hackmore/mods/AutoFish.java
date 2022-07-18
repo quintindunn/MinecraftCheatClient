@@ -1,5 +1,6 @@
 package dev.quintindunn.hackmore.mods;
 
+import dev.quintindunn.hackmore.Hackmore;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Hand;
 
@@ -22,5 +23,14 @@ public class AutoFish {
 
     public static void setRecast(int ticks) {
         recast = ticks;
+    }
+
+    public static void setAutoFishState(boolean state)
+    {
+        Hackmore.getInstance().AutoFishEnabled = state;
+    }
+    public static void toggleAutoFish()
+    {
+        setAutoFishState(!Hackmore.getInstance().AutoFishEnabled);
     }
 }

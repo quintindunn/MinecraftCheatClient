@@ -1,8 +1,6 @@
 package dev.quintindunn.hackmore;
 
-import dev.quintindunn.hackmore.mods.FullBright;
-import dev.quintindunn.hackmore.mods.Speed;
-import dev.quintindunn.hackmore.mods.Xray;
+import dev.quintindunn.hackmore.mods.*;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.SliderWidget;
@@ -25,42 +23,20 @@ public class SettingsMenuScreen extends Screen {
     }
 
     public MutableText text(String type){
-
         if (Objects.equals(type, "autofish"))
-        {
-            if (Hackmore.getInstance().AutoFishEnabled)
-            {
-                return Text.literal("AutoFish: ON");
-            }
-            return Text.literal("AutoFish: OFF");
-        }
+            return Text.literal("Auto-Fish: " + (Hackmore.getInstance().AutoFishEnabled ? "ON" : "OFF"));
 
         if (Objects.equals(type, "fullbright"))
-        {
-            if (Hackmore.getInstance().FullBrightEnabled)
-            {
-                return Text.literal("FullBright: ON");
-            }
-            return Text.literal("FullBright: OFF");
-        }
+            return Text.literal("Full-Bright: " + (Hackmore.getInstance().FullBrightEnabled ? "ON" : "OFF"));
 
         if (Objects.equals(type, "xray"))
-        {
-            if (Hackmore.getInstance().XrayEnabled)
-            {
-                return Text.literal("X-Ray: ON");
-            }
-            return Text.literal("X-Ray: OFF");
-        }
+            return Text.literal("X-Ray: " + (Hackmore.getInstance().XrayEnabled ? "ON" : "OFF"));
+
+        if (Objects.equals(type, "nofall"))
+            return Text.literal("No-Fall: " + (Hackmore.getInstance().NoFallEnabled ? "ON" : "OFF"));
 
         if (Objects.equals(type, "speed"))
-        {
-            if (Hackmore.getInstance().SpeedEnabled)
-            {
-                return Text.literal("Speed: " + (float)Speed.getSpeed());
-            }
-            return Text.literal("Speed: OFF");
-        }
+            return Text.literal("Speed: " + (Hackmore.getInstance().SpeedEnabled ? (float)Speed.getSpeed() : "OFF"));
 
         return Text.literal("Null");
     }
@@ -70,7 +46,7 @@ public class SettingsMenuScreen extends Screen {
         // AutoFish
         this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 60, 200, 20,
                 text("autofish"), (button -> {
-            Hackmore.getInstance().AutoFishEnabled = !Hackmore.getInstance().AutoFishEnabled;
+            AutoFish.toggleAutoFish();
             button.setMessage(text("autofish"));
         })));
 
@@ -88,8 +64,15 @@ public class SettingsMenuScreen extends Screen {
             button.setMessage(text("xray"));
         })));
 
+        // NoFall
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 150, 200, 20,
+                text("nofall"), (button -> {
+            NoFall.toggleNoFall();
+            button.setMessage(text("nofall"));
+        })));
+
         // Speed
-        SliderWidget button = new SliderWidget(this.width / 2 - 100, this.height / 6 + 150, 200, 20,
+        SliderWidget button = new SliderWidget(this.width / 2 - 100, this.height / 6 + 180, 200, 20,
                 text("speed"), Speed.getSpeed())
         {
             @Override
