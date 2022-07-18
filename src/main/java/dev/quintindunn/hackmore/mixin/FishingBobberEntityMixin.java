@@ -1,6 +1,7 @@
 package dev.quintindunn.hackmore.mixin;
 
 import dev.quintindunn.hackmore.Hackmore;
+import dev.quintindunn.hackmore.mods.AutoFish;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.projectile.FishingBobberEntity;
@@ -22,7 +23,7 @@ public abstract class FishingBobberEntityMixin {
 		if (caughtFish && Hackmore.getInstance().AutoFishEnabled) {
 			assert client.interactionManager != null;
 			client.interactionManager.interactItem(client.player, Hand.MAIN_HAND);
-			Hackmore.getInstance().setRecast(20);
+			AutoFish.setRecast(20);
 		}
 
 

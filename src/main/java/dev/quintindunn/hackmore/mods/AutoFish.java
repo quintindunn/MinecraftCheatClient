@@ -5,8 +5,7 @@ import net.minecraft.util.Hand;
 
 
 public class AutoFish {
-    public int recast = -1;
-
+    public static int recast = -1;
     public void tick(MinecraftClient client) {
         if (recast>0) {
             recast--;
@@ -21,7 +20,7 @@ public class AutoFish {
 
     }
 
-    public void setRecast(int ticks) {
+    public static void setRecast(int ticks) {
         recast = ticks;
     }
 }

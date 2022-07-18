@@ -40,12 +40,7 @@ public class Hackmore implements ModInitializer {
 		return instance;
 	}
 
-	public void setRecast(int ticks){
-		fisher.setRecast(ticks);
-	}
-	public static boolean shouldDrawSide(BlockState state) {
-		return xray.showBlock(state);
-	}
+
 
 	public void tick(MinecraftClient client) {
 		fisher.tick(client);

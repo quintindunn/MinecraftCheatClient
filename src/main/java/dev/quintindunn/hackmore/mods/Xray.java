@@ -13,9 +13,9 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import java.util.HashSet;
 
 public class Xray implements ClientModInitializer {
-    private static KeyBinding hotkey = KeyBindingHelper.registerKeyBinding(new KeyBinding("Toggle X-Ray", InputUtil.Type.KEYSYM, 88, "key.categories.misc"));
+    private static final KeyBinding hotkey = KeyBindingHelper.registerKeyBinding(new KeyBinding("Toggle X-Ray", InputUtil.Type.KEYSYM, 88, "key.categories.misc"));
 
-    private HashSet<String> xrayBlocks = new HashSet();
+    private static final HashSet<String> xrayBlocks = new HashSet<>();
     private static int FullbrightState = 1;
 
     public Xray() {
@@ -53,7 +53,7 @@ public class Xray implements ClientModInitializer {
     }
 
     private static final SimpleOption<Double> gammaBypass = new SimpleOption<>("options.gamma", SimpleOption.emptyTooltip(), (optionText, value) -> Text.empty(), SimpleOption.DoubleSliderCallbacks.INSTANCE.withModifier(
-            d -> (double) 20d, d -> 1
+            d -> 20d, d -> 1
     ), 0.5, value -> {});
 
     public static SimpleOption<Double> getGammaBypass() {
@@ -68,7 +68,7 @@ public class Xray implements ClientModInitializer {
     }
 
 
-    public boolean showBlock(BlockState state) {
+    public static boolean showBlock(BlockState state) {
         return xrayBlocks.contains(state.getBlock().toString());
     }
 
@@ -88,7 +88,9 @@ public class Xray implements ClientModInitializer {
         client.worldRenderer.reload();
     }
 
-
+    public static boolean shouldDrawSide(BlockState state) {
+        return showBlock(state);
+    }
 
     @Override
     public void onInitializeClient() {
