@@ -34,7 +34,7 @@ public class Flight {
 
         if (mode == 0 && player != null)
         {
-            Vec3d playerVelocity = player.getVelocity();
+            Vec3d playerVelocity = player.getRotationVector();
             double yVelocity = 0;
 
             if (jumpKey.isPressed())
@@ -45,7 +45,7 @@ public class Flight {
             if (!(forwardKey.isPressed() || backwardKey.isPressed() || leftKey.isPressed() || rightKey.isPressed()))
                 acceleration = 1;
 
-            player.setVelocity(Math.min(playerVelocity.x * acceleration, maxVelocity), yVelocity, Math.min(playerVelocity.x * acceleration, maxVelocity));
+            player.setVelocity(Math.min(playerVelocity.x * acceleration, maxVelocity), yVelocity, Math.min(playerVelocity.z * acceleration, maxVelocity));
         }
         else if (mode == 1 && player != null) // Vanilla flying disabled bypass
         {
@@ -74,7 +74,7 @@ public class Flight {
 
             if (keysPressed == 1) yVelocity -= 0.01;
             else if (keysPressed > 1) yVelocity -= 0.018;
-            player.setVelocity(Math.min(playerVelocity.x * acceleration, maxVelocity), yVelocity, Math.min(playerVelocity.x * acceleration, maxVelocity));
+            player.setVelocity(Math.min(playerVelocity.x * acceleration, maxVelocity), yVelocity, Math.min(playerVelocity.z * acceleration, maxVelocity));
         }
     }
 
