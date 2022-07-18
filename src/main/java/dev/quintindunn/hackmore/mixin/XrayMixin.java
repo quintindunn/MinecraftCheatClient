@@ -3,6 +3,7 @@ package dev.quintindunn.hackmore.mixin;
 import dev.quintindunn.hackmore.Hackmore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -23,9 +24,12 @@ public class XrayMixin {
             cancellable = true)
     private static void shouldDrawSide(BlockState state, BlockView reader, BlockPos pos, Direction face,
                                        BlockPos blockPos, CallbackInfoReturnable<Boolean> ci) {
-        if (Hackmore.getInstance().XrayEnabled) {
+        if (Hackmore.getInstance().XrayEnabled)
+        {
+
             ci.setReturnValue(Hackmore.shouldDrawSide(state));
         }
+
     }
 
     private XrayMixin() {

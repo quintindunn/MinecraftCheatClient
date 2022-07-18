@@ -8,6 +8,7 @@
   "client": [
     "FishingBobberEntityMixin",
     "XrayMixin",
+    "MixinLightmapTextureManager",
     "SettingsMixin"
   ],
   "injectors": {
