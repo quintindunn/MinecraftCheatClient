@@ -1,15 +1,15 @@
 package dev.quintindunn.hackmore;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.MinecraftClientGame;
+import dev.quintindunn.hackmore.mods.Speed;
+import dev.quintindunn.hackmore.mods.Xray;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.SliderWidget;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.option.SimpleOption;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
-import java.awt.*;
 import java.util.Objects;
 
 public class SettingsMenuScreen extends Screen {
@@ -43,6 +43,15 @@ public class SettingsMenuScreen extends Screen {
             return Text.literal("X-Ray: OFF");
         }
 
+        if (Objects.equals(type, "speed"))
+        {
+            if (Hackmore.getInstance().SpeedEnabled)
+            {
+                return Text.literal("Speed: " + (float)Speed.getSpeed());
+            }
+            return Text.literal("Speed: OFF");
+        }
+
         return Text.literal("Null");
     }
 
@@ -61,5 +70,29 @@ public class SettingsMenuScreen extends Screen {
             Xray.toggleXray();
             button.setMessage(text("xray"));
         })));
+
+        // Speed
+        SliderWidget button = new SliderWidget(this.width / 2 - 100, this.height / 6 + 120, 200, 20,
+                text("speed"), Speed.getSpeed())
+        {
+            @Override
+            protected void updateMessage() {
+
+            }
+
+            @Override
+            protected void applyValue() {
+                Hackmore.getInstance().SpeedEnabled = this.value > 0;
+                if (Hackmore.getInstance().SpeedEnabled)
+                {
+                    Speed.setSpeed(this.value * (Speed.maxSpeed - Speed.minSpeed) + Speed.minSpeed);
+                }
+                this.setMessage(text("speed"));
+            }
+        };
+        this.addDrawableChild(button);
+    }
+
+    private void addDrawableChild(SliderWidget speed, Object o) {
     }
 }

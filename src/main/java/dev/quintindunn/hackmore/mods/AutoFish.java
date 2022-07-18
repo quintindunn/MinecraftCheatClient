@@ -1,4 +1,4 @@
-package dev.quintindunn.hackmore;
+package dev.quintindunn.hackmore.mods;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Hand;

@@ -1,5 +1,8 @@
 package dev.quintindunn.hackmore;
 
+import dev.quintindunn.hackmore.mods.AutoFish;
+import dev.quintindunn.hackmore.mods.Speed;
+import dev.quintindunn.hackmore.mods.Xray;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.block.BlockState;
@@ -11,10 +14,12 @@ public class Hackmore implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("hackmore");
 	private static Hackmore instance;
 	private AutoFish fisher;
+	private Speed speed;
 	private static Xray xray;
 
 	// Cheat (enabled) booleans
 	public boolean AutoFishEnabled = false;
+	public boolean SpeedEnabled = false;
 	public boolean XrayEnabled = false;
 
 
@@ -23,6 +28,7 @@ public class Hackmore implements ModInitializer {
 		if (instance==null) instance = this;
 		fisher = new AutoFish();
 		xray = new Xray();
+		speed = new Speed();
 		ClientTickEvents.END_CLIENT_TICK.register(this::tick);
 
 	}
@@ -40,6 +46,7 @@ public class Hackmore implements ModInitializer {
 
 	public void tick(MinecraftClient client) {
 		fisher.tick(client);
+		speed.tick(client);
 	}
 
 	public int getEnabledCheatsCount(){

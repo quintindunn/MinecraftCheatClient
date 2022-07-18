@@ -1,5 +1,6 @@
-package dev.quintindunn.hackmore;
+package dev.quintindunn.hackmore.mods;
 
+import dev.quintindunn.hackmore.Hackmore;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;

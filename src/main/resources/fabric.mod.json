@@ -22,7 +22,7 @@
       "dev.quintindunn.hackmore.Hackmore"
     ],
     "client": [
-      "dev.quintindunn.hackmore.Xray"
+      "dev.quintindunn.hackmore.mods.Xray"
     ]
   },
   "mixins": [

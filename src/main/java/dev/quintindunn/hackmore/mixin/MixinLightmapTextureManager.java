@@ -1,7 +1,6 @@
 package dev.quintindunn.hackmore.mixin;
 
-import dev.quintindunn.hackmore.Hackmore;
-import dev.quintindunn.hackmore.Xray;
+import dev.quintindunn.hackmore.mods.Xray;
 import net.minecraft.client.option.SimpleOption;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
